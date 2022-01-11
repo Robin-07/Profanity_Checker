@@ -1,0 +1,25 @@
+import re
+
+def main():
+	n = int(input('How many racial slurs ? '))
+	slurs = []
+	for i in range(n):
+		slurs.append(input(f'Enter slur {i+1}: ').lower())
+
+	with open('tweets.txt', 'r') as file:
+		current_line = file.readline()
+		while current_line:
+			profanity_degree = 0
+			pattern = re.compile(r'[^a-zA-Z ]+')
+			current_line = re.sub(pattern, '', current_line).lower()
+			words = current_line.split()
+			for word in words:
+				print(word, end = '\n')
+				if word in slurs:
+					profanity_degree += 1
+			print(profanity_degree, end = '\n')
+			current_line = file.readline()
+
+
+if __name__ == '__main__':
+	main()
