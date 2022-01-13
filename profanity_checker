@@ -1,16 +1,20 @@
 import re
 
 def main():
+	
+	# Taking a list of racial slurs as input from user
 	n = int(input('How many racial slurs ? '))
 	slurs = []
 	for i in range(n):
 		slurs.append(input(f'Enter slur {i+1}: ').lower())
 
+	# Processing the tweets file, one line at a time
 	with open('tweets.txt', 'r') as file:
 		current_line = file.readline()
 		while current_line:
 			profanity_degree = 0
 			pattern = re.compile(r'[^a-zA-Z ]+')
+			# Converting words in the current line to lowercase
 			current_line = re.sub(pattern, '', current_line).lower()
 			words = current_line.split()
 			for word in words:
