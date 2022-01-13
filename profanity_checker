@@ -18,7 +18,6 @@ def main():
 			current_line = re.sub(pattern, '', current_line).lower()
 			words = current_line.split()
 			for word in words:
-				print(word, end = '\n')
 				if word in slurs:
 					profanity_degree += 1
 			print(profanity_degree, end = '\n')
